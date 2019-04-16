@@ -38,7 +38,7 @@ public class ProductInfoServicelpml implements ProductInfoService {
                 productCategoryDto.getCategoryType()).collect(Collectors.toList());
         //根据类目编号集合查询商品列表
         List<ProductInfo> productInfoList
-                = productInfoRepository.findAllByProductStatusAndCategoryTypeIn(ResultEnums.PRODUCT_UP.getCode(), typeList);
+                = productInfoRepository.findByProductStatusAndCategoryTypeIn(ResultEnums.PRODUCT_UP.getCode(), typeList);
 //        对productCategoryDtosList集合进行遍历 取出每个商品的类目编号 设置到对应的目录中
         //将productInfo设置到foodsz中
         //过滤：不同的type,进行不同的封装

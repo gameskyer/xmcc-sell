@@ -1,11 +1,10 @@
 package com.xmcc.wxsell.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.xmcc.wxsell.entity.ProductInfo;
-import org.codehaus.jackson.annotate.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;

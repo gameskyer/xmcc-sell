@@ -21,7 +21,7 @@ public class ProductInfo {
     /**
      * BigDecimal:String类型的
      * */
-    private BigDecimal prductPrice;
+    private BigDecimal productPrice;
 
     /** 库存. */
     private Integer productStock;
