@@ -2,10 +2,9 @@ package com.xmcc.wxsell.controller;
 
 import com.xmcc.wxsell.common.ResultResponse;
 import com.xmcc.wxsell.service.ProductInfoService;
-import com.xmcc.wxsell.service.lpml.ProductInfoServicelpml;
+import com.xmcc.wxsell.service.ipml.ProductInfoServiceipml;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,11 +16,11 @@ public class ProductInfoController {
     @Autowired
     private ProductInfoService productInfoService;
     @Autowired
-    private ProductInfoServicelpml productInfoServicelpml;
+    private ProductInfoServiceipml productInfoServiceipml;
     @RequestMapping("/list")
     @ApiOperation(value = "查询商品列表")
     public ResultResponse list(){
 
-        return productInfoServicelpml.queryList();
+        return productInfoServiceipml.queryList();
     }
 }

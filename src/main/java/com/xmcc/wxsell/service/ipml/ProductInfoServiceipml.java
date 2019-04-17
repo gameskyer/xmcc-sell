@@ -1,5 +1,6 @@
-package com.xmcc.wxsell.service.lpml;
+package com.xmcc.wxsell.service.ipml;
 
+import com.xmcc.wxsell.common.ProductEnums;
 import com.xmcc.wxsell.common.ResultEnums;
 import com.xmcc.wxsell.common.ResultResponse;
 import com.xmcc.wxsell.dto.ProductCategoryDto;
@@ -9,15 +10,17 @@ import com.xmcc.wxsell.entity.ProductInfo;
 import com.xmcc.wxsell.repository.ProductCategoryRepository;
 import com.xmcc.wxsell.repository.ProductInfoRepository;
 import com.xmcc.wxsell.service.ProductInfoService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collections;
+
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 @Service
-public class ProductInfoServicelpml implements ProductInfoService {
+public class ProductInfoServiceipml implements ProductInfoService {
   @Autowired
   private ProductCategoryRepository productCategoryRepository;
     @Autowired
@@ -50,5 +53,31 @@ public class ProductInfoServicelpml implements ProductInfoService {
             return productCategoryDto;
         }).collect(Collectors.toList());
         return ResultResponse.success(productCategoryDtos);
+    }
+
+    @Override
+    public ResultResponse<ProductInfo> queryById(String productId) {
+        //判断ID是否为空
+        if(StringUtils.isBlank(productId)){
+            return ResultResponse.fail(ResultEnums.PARAM_ERROR.getMsg());
+        }
+
+        Optional<ProductInfo> byId = productInfoRepository.findById(productId);
+        //判断byId是否为空
+        if(!byId.isPresent()){
+            return ResultResponse.fail(ResultEnums.NOT_EXITS.getMsg());
+        }
+        ProductInfo productInfo = byId.get();
+        if(productInfo.getProductStatus() == ResultEnums.PRODUCT_DOWN.getCode()){
+            return ResultResponse.fail(ResultEnums.PRODUCT_DOWN.getMsg());
+        }
+        return ResultResponse.success(productInfo);
+    }
+
+    @Override
+    public void updateProuct(ProductInfo productInfo) {
+        //save方法keyiupdate
+        productInfoRepository.save(productInfo);
+
     }
 }
