@@ -1,5 +1,6 @@
 package com.xmcc.wxsell.dto;
 
+import com.xmcc.wxsell.entity.OrderMaster;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Data
 @ApiModel("订单参数实体类")
-public class OrderMasterDto implements Serializable {
+public class OrderMasterDto implements Serializable  {
 
     @NotBlank(message = "姓名不能为空")
     @ApiModelProperty(value = "买家姓名",dataType = "String")

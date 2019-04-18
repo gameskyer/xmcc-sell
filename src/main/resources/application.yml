@@ -7,8 +7,24 @@ spring:
     password: 123456
     maxActive: 30 #最大链接数
     maxWait: 10000 #获得链接的最大等待时间
+#  thymeleaf:
+#    cache: true
+#    check-template-location: true
+#    enabled: true
+#    encoding: utf-8
+#    mode: HTML5
+#    prefix: classpath:/templates/
+#    suffix: .html
+#    excluded-view-names:
+#    template-resolver-order:
+#     content-type: text/html
   jpa:
+#    database: mysql
     show-sql: true  #显示sql语句
+#    hibernate:
+#      ddl-auto: update
+#      naming:
+#      strategy: org.hibernate.cfg.ImprovedNamingStrategy
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss  #日期格式化标准
     default-property-inclusion: non_null  #返回json时 忽略null

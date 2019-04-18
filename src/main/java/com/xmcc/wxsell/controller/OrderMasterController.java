@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -42,6 +43,23 @@ public class OrderMasterController {
             map.put("参数校检异常", JsonUtil.object2string(collect));
            return ResultResponse.fail();
         }
-        return orderMasterService.insertOder(orderMasterDto);
+        return orderMasterService.insertOrder(orderMasterDto);
+    }
+    @RequestMapping("/list")
+    @ApiOperation(value = "订单列表",httpMethod = "POST",response = ResultResponse.class)
+    public ResultResponse list(
+           Integer page, Integer size){
+//        Page<OrderMaster> orderMasters = orderMasterService.listOder(page, size);
+        return orderMasterService.listOrder(page, size);
+    }
+    @RequestMapping("/detail")
+    @ApiOperation(value = "订单详情",httpMethod = "POST",response = ResultResponse.class)
+    public ResultResponse detail(String orderId,String openId){
+        return  orderMasterService.OderDetail(orderId,openId);
+    }
+    @RequestMapping("/cancel")
+    @ApiOperation(value = "取消订单",httpMethod = "POST",response = ResultResponse.class)
+    public ResultResponse delete(String orderId,String openId){
+        return  orderMasterService.removeOrder(orderId,openId);
     }
 }

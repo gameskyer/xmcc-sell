@@ -1,13 +1,19 @@
 package com.xmcc.wxsell;
 
 import com.google.common.collect.Lists;
+import com.xmcc.wxsell.entity.OrderMaster;
 import com.xmcc.wxsell.entity.User;
+import com.xmcc.wxsell.repository.OrderMasterRepository;
 import com.xmcc.wxsell.repository.UserRespository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +23,8 @@ import java.util.List;
 public class WxSellApplicationTests {
 @Autowired
 private UserRespository userRespository;
+    @Autowired
+    private OrderMasterRepository orderMasterRepository;
     @Test
     public void contextLoads() {
 //        List<User> all = userRespository.findAll();
@@ -41,8 +49,10 @@ private UserRespository userRespository;
 //        User user = userRespository.queryUserByUserId(64);
 //        System.out.println(user.toString());
 
-        User user = userRespository.getUserByUserId(64);
-        System.out.println(user.toString());
+//        User user = userRespository.getUserByUserId(64);
+//        System.out.println(user.toString());
+
+//        Page<OrderMaster> order = (Page<OrderMaster>) orderMasterRepository.findAll();
 
     }
 
