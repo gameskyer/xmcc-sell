@@ -11,5 +11,9 @@ public class WeiXinProperties {
 
     private String appid;
     private String secret;
+    private String mchId;
+    private String keyPath;
+    private String mchKey;
+    private String notifyUrl;
 
 }

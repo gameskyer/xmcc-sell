@@ -14,6 +14,7 @@ import com.xmcc.wxsell.repository.OrderDetailRepository;
 import com.xmcc.wxsell.repository.OrderMasterRepository;
 import com.xmcc.wxsell.service.OrderDetailService;
 import com.xmcc.wxsell.service.OrderMasterService;
+import com.xmcc.wxsell.service.PayService;
 import com.xmcc.wxsell.service.ProductInfoService;
 import com.xmcc.wxsell.util.BigDecimalUtil;
 import com.xmcc.wxsell.util.IDUtils;
@@ -43,6 +44,8 @@ public class OrderMasterServiceimpl implements OrderMasterService {
     private OrderMasterRepository orderMasterRepository;
     @Autowired
     private OrderDetailRepository orderDetailRepository;
+    @Autowired
+    private PayService payService;
     @Override
     @Transactional
     public ResultResponse insertOrder(OrderMasterDto orderMasterDto) {
@@ -174,6 +177,9 @@ public class OrderMasterServiceimpl implements OrderMasterService {
             productInfoService.updateProuct(productInfo);
         }
         orderMasterRepository.save(orderMaster);
+        if(orderMaster.getPayStatus() == PayEnums.FINISH.getCode()){
+            payService.refund(orderMaster);
+        }
         return ResultResponse.success();
     }
 }
