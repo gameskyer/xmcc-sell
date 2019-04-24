@@ -5,6 +5,7 @@ import com.lly835.bestpay.service.BestPayService;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import lombok.Data;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class PayConfig {
 
     //进行payweixin支付的配置
+    @Bean
     public BestPayService bestPayService(){
         WxPayH5Config wxPayH5Config =new WxPayH5Config();
         wxPayH5Config.setAppId("wxcec0b9e65c084712");

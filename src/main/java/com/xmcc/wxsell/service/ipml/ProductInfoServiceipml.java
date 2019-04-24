@@ -47,8 +47,9 @@ public class ProductInfoServiceipml implements ProductInfoService {
         //过滤：不同的type,进行不同的封装
         //将productInfo转成Dto
         List<ProductCategoryDto> productCategoryDtos = productCategoryDtosList.parallelStream().map(productCategoryDto -> {
-            productCategoryDto.setProductInfoDtoList(productInfoList.stream().filter(productInfo -> productInfo.getCategoryType() == productCategoryDto.getCategoryType())
-                    .map(productInfo -> ProductInfoDto.build(productInfo)).collect(Collectors.toList()));
+            productCategoryDto.setProductInfoDtoList(productInfoList.stream().filter(productInfo ->
+                    productInfo.getCategoryType() == productCategoryDto.getCategoryType()).map(productInfo ->
+                    ProductInfoDto.build(productInfo)).collect(Collectors.toList()));
 
             return productCategoryDto;
         }).collect(Collectors.toList());

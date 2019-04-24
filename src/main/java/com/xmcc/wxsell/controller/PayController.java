@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -21,9 +22,10 @@ public class PayController {
     private PayService payService;
 
     @RequestMapping("/create")
-    public ModelAndView cteate(Map map, @RequestParam("orderId") String orderId, @RequestParam("returnUrl") String returnUrl){
+    public ModelAndView cteate(@RequestParam("orderId") String orderId, @RequestParam("returnUrl") String returnUrl){
         //根据Id查询订单
         OrderMaster oneById = payService.findOneById(orderId);
+        Map map = new HashMap();
         //根据订单创建支付
         PayResponse payResponse = payService.create(oneById);
         map.put("payResponse", payResponse);

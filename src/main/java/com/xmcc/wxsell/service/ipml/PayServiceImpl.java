@@ -17,12 +17,14 @@ import com.xmcc.wxsell.util.BigDecimalUtil;
 import com.xmcc.wxsell.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 @Service
 @Slf4j
+
 public class PayServiceImpl implements PayService {
     @Autowired
     private BestPayService bestPayService;
